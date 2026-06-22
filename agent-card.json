@@ -1,0 +1,15 @@
+{
+  "description": "SNTL is an autonomous security intelligence and threat detection agent engineered for high-throughput, decentralized infrastructure. It provides real-time observability, forensic analysis, and automated threat mitigation for Web3 networks, specifically optimized for high-ingress data pipelines and Solana-based telemetry.",
+  "capabilities": [],
+  "package_name": "github.substreambc.sntl-solana-helium-sql-query-d",
+  "display_name": "SNTL Solana, Helium, SQL Query Datalake for AI",
+  "version": "1.0.0",
+  "category": "Business",
+  "target_audience": "General",
+  "openapi_url": "https://a2a.sntl.site/.well-known/agent.json",
+  "skills": [],
+  "metadata": {
+    "generated_by": "A2A Global Registry",
+    "generated_at": "2026-06-22T15:04:56.290Z"
+  }
+}
