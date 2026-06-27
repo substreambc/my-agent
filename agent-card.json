@@ -4,29 +4,32 @@
   "version": "1.0.0",
   "category": "Infrastructure & Security",
   "target_audience": "Autonomous AI Agents, DePIN Fleet Managers, Systems Architects",
-  "openapi_url": "https://a2a.sntl.site/.well-known/agent.json",
-  "description": "SNTL is an enterprise-grade, autonomous spatial intelligence and cryptographic security engine engineered for high-throughput Decentralized Physical Infrastructure Networks (DePIN). Utilizing native x402 HTTP micro-payment protocols for automated machine-to-machine billing, SNTL ingests raw Solana SVM substreams and real-time network telemetry to deliver low-latency RF anomaly detection, predictive yield-loss forensics, and automated threat mitigation vectors.",
+  "openapi_url": "https://a2a.sntl.site/openapi.json",
+  "description": "SNTL is an autonomous spatial-intelligence and security engine for Decentralized Physical Infrastructure Networks (DePIN). It ingests raw Solana SVM substreams and Helium network telemetry, then serves AI-classified threat tiers, anomaly scores, H3 geospatial hotspots, wallet/audience intelligence, and forensic chronicles over an enriched datalake of 600K+ on-chain events across 12 program shards. Every query is machine-payable via native x402 micro-payments (Solana mainnet USDC) — no signup, no API key, pay per call; first tier free.",
   "capabilities": [
     "real_time_solana_svm_substream_ingestion",
-    "autonomous_x402_micro_payment_settlement_handling",
-    "predictive_rf_anomaly_and_yield_loss_diagnostics",
-    "decentralized_physical_infrastructure_network_observability",
-    "cryptographic_state_verification_via_compressed_nfts",
-    "high_concurrency_spatial_h3_hex_telemetry_synthesis"
+    "ai_classified_threat_tier_and_anomaly_scoring",
+    "autonomous_x402_micro_payment_settlement",
+    "spatial_h3_hex_geo_hotspot_synthesis",
+    "wallet_and_audience_intelligence_segmentation",
+    "tiered_llm_threat_adjudication",
+    "on_chain_anomaly_attestation_via_compressed_nfts"
   ],
   "skills": [
-    "execute_structured_sql_queries_on_sovereign_depin_datalake",
-    "retrieve_h3_hex_rf_telemetry_and_signal_coverage_maps",
-    "isolate_and_triage_network_threat_vectors_in_real_time",
-    "calculate_hotspot_yield_loss_and_revenue_bleed_metrics",
-    "verify_on_chain_solana_cnft_state_transitions",
-    "serve_cryptographically_signed_anomaly_proofs_to_machine_consumers"
+    "execute_read_only_sql_select_over_the_depin_datalake",
+    "classify_and_triage_threat_tiers_critical_to_low",
+    "score_and_rank_event_anomalies",
+    "resolve_h3_hex_geospatial_hotspots",
+    "segment_wallet_and_audience_intelligence_pools",
+    "retrieve_forensic_world_state_chronicles",
+    "lookup_single_enriched_event_by_transaction_id",
+    "read_free_wallet_transparency_ledger"
   ],
   "metadata": {
-    "generated_by": "A2A Global Registry",
-    "generated_at": "2026-06-22T15:04:56.290Z",
-    "engine_architecture": "Bare-Metal High-Concurrency Edge Node",
-    "payment_integration": "PayAI x402 Facilitator Mesh",
-    "data_source_velocity": "Helius RPC Native Substreams"
+    "protocol_standard": "A2A + x402 (a2a-x402 v0.1 extension)",
+    "payment_integration": "x402 / PayAI facilitator — Solana mainnet USDC",
+    "data_source": "Helius RPC native Solana substreams",
+    "datalake_depth": "600K+ enriched on-chain events across 12 Helium program shards",
+    "pricing": "$0.01 USDC per call; first tier free"
   }
 }
