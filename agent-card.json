@@ -1,15 +1,32 @@
 {
-  "description": "SNTL is an autonomous security intelligence and threat detection agent engineered for high-throughput, decentralized infrastructure. It provides real-time observability, forensic analysis, and automated threat mitigation for Web3 networks, specifically optimized for high-ingress data pipelines and Solana-based telemetry.",
-  "capabilities": [],
+  "display_name": "SNTL: DePIN Spatial Intelligence & Autonomous x402 DataLake",
   "package_name": "github.substreambc.sntl-solana-helium-sql-query-d",
-  "display_name": "SNTL Solana, Helium, SQL Query Datalake for AI",
   "version": "1.0.0",
-  "category": "Business",
-  "target_audience": "General",
+  "category": "Infrastructure & Security",
+  "target_audience": "Autonomous AI Agents, DePIN Fleet Managers, Systems Architects",
   "openapi_url": "https://a2a.sntl.site/.well-known/agent.json",
-  "skills": [],
+  "description": "SNTL is an enterprise-grade, autonomous spatial intelligence and cryptographic security engine engineered for high-throughput Decentralized Physical Infrastructure Networks (DePIN). Utilizing native x402 HTTP micro-payment protocols for automated machine-to-machine billing, SNTL ingests raw Solana SVM substreams and real-time network telemetry to deliver low-latency RF anomaly detection, predictive yield-loss forensics, and automated threat mitigation vectors.",
+  "capabilities": [
+    "real_time_solana_svm_substream_ingestion",
+    "autonomous_x402_micro_payment_settlement_handling",
+    "predictive_rf_anomaly_and_yield_loss_diagnostics",
+    "decentralized_physical_infrastructure_network_observability",
+    "cryptographic_state_verification_via_compressed_nfts",
+    "high_concurrency_spatial_h3_hex_telemetry_synthesis"
+  ],
+  "skills": [
+    "execute_structured_sql_queries_on_sovereign_depin_datalake",
+    "retrieve_h3_hex_rf_telemetry_and_signal_coverage_maps",
+    "isolate_and_triage_network_threat_vectors_in_real_time",
+    "calculate_hotspot_yield_loss_and_revenue_bleed_metrics",
+    "verify_on_chain_solana_cnft_state_transitions",
+    "serve_cryptographically_signed_anomaly_proofs_to_machine_consumers"
+  ],
   "metadata": {
     "generated_by": "A2A Global Registry",
-    "generated_at": "2026-06-22T15:04:56.290Z"
+    "generated_at": "2026-06-22T15:04:56.290Z",
+    "engine_architecture": "Bare-Metal High-Concurrency Edge Node",
+    "payment_integration": "PayAI x402 Facilitator Mesh",
+    "data_source_velocity": "Helius RPC Native Substreams"
   }
 }
