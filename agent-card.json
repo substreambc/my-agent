@@ -1,11 +1,16 @@
 {
   "display_name": "SNTL: DePIN Spatial Intelligence & Autonomous x402 DataLake",
-  "package_name": "github.substreambc.sntl-solana-helium-sql-query-d",
+  "package_name": "github.substreambc.sntl-solana-helium-sql-query-datalake",
   "version": "1.0.0",
   "category": "Infrastructure & Security",
   "target_audience": "Autonomous AI Agents, DePIN Fleet Managers, Systems Architects",
   "openapi_url": "https://a2a.sntl.site/openapi.json",
-  "description": "SNTL is an autonomous spatial-intelligence and security engine for Decentralized Physical Infrastructure Networks (DePIN). It ingests raw Solana SVM substreams and Helium network telemetry, then serves AI-classified threat tiers, anomaly scores, H3 geospatial hotspots, wallet/audience intelligence, and forensic chronicles over an enriched datalake of 600K+ on-chain events across 12 program shards. Every query is machine-payable via native x402 micro-payments (Solana mainnet USDC) — no signup, no API key, pay per call; first tier free.",
+  "description": "SNTL is an autonomous spatial-intelligence and security engine for Decentraliz
+ed Physical Infrastructure Networks (DePIN). It ingests raw Solana SVM substreams and Helium net
+work telemetry, then serves AI-classified threat tiers, anomaly scores, H3 geospatial hotspots,
+wallet/audience intelligence, and forensic chronicles over an enriched datalake of 600K+ on-chai
+n events across 12 program shards. Every query is machine-payable via native x402 micro-payments
+ (Solana mainnet USDC) — no signup, no API key, pay per call; first tier free.",
   "capabilities": [
     "real_time_solana_svm_substream_ingestion",
     "ai_classified_threat_tier_and_anomaly_scoring",
