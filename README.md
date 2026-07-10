@@ -2,8 +2,8 @@
   "protocolVersion": "1.0",
   "name": "SNTL Helium Intelligence",
   "display_name": "SNTL: DePIN Spatial Intelligence & Autonomous x402 DataLake",
-  "description": "Pay-per-query intelligence for the Helium x Solana DePIN network. Query an AI-classified datalake of enriched on-chain events across 12 program shards: threat tiers (critical->low), anomaly scores, H3 geospatial hotspot resolution, forensic space-time-power chronicles, tiered LLM escalation verdicts, and scored wallet/audience segments. 26 machine skills plus sandboxed SQL SELECT. $0.01 USDC per call via x402 on Solana mainnet - no signup, no API key. Two skills are free: probe before you pay. Built for autonomous agents that need to check a Solana/Helium wallet, tx, or program and get back a classified, on-chain-verifiable answer. The protocol is the UI.",
-  "version": "2.0.0",
+  "description": "Pay-per-query intelligence for the Helium x Solana DePIN network. Query an AI-classified datalake of enriched on-chain events across 12 program shards: threat tiers (critical->low), anomaly scores, H3 geospatial hotspot resolution, forensic space-time-power chronicles, tiered LLM escalation verdicts, and scored wallet/audience segments. 26 machine skills plus sandboxed SQL SELECT (SELECT-only, LIMIT<=100, allow-listed tables). $0.01 USDC per call via x402 on Solana mainnet - no signup, no API key. Two skills are free: probe before you pay. Built for autonomous agents that need to check a Solana/Helium wallet, tx, or program and get back a classified, on-chain-verifiable answer. The protocol is the UI.",
+  "version": "2.1.0",
   "url": "https://a2a.sntl.site/api/v2",
   "preferredTransport": "JSONRPC",
 
@@ -25,7 +25,7 @@
           "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
           "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
           "assetSymbol": "USDC",
-          "payTo": "5zeU4Dmnc1AgqfnNdFKNRA5czoxyDvvNnqnK2JbrLV5B",
+          "payTo": "DDxMHJceaNE9tWohpauakaek8Q7P7CJ2jkzhiHRybCmt",
           "price_usdc": 0.01,
           "facilitator": "https://facilitator.payai.network",
           "proof_tx": "2TEnsbpuxLC3qsCLAf4MB2XfUbr2SF4B34vjpkV1Yzq2BeDqVuTzmEo6UX3SXFDkKRWMYtbSJ6K8GcuNZt7J939c",
@@ -39,7 +39,7 @@
     "x402": {
       "type": "http",
       "scheme": "x402",
-      "description": "Per-query settlement. Server returns 402 with accepts:[PaymentRequirements]; client resubmits with X-PAYMENT header. Solana mainnet USDC, gasless via PayAI facilitator. 0.01 USDC per paid call. Free skills require no payment."
+      "description": "Per-query settlement. Server returns 402 with accepts:[PaymentRequirements]; client resubmits with X-PAYMENT header. Solana mainnet USDC, gasless via PayAI facilitator. $0.01 per paid call. Free skills require no payment."
     }
   },
   "security": [{ "x402": [] }],
@@ -48,15 +48,17 @@
   "defaultOutputModes": ["application/json"],
 
   "x-free-tier": {
-    "description": "Two skills are free and unmetered-by-payment. Probe these first to verify the rail before spending.",
+    "description": "Two skills are free. Probe these to verify the rail before spending.",
     "skills": ["wallet-history", "stats"]
   },
 
   "x-limits": {
     "sql_select_only": true,
+    "default_rows": 50,
     "max_rows": 100,
     "allow_listed_tables": true,
-    "note": "Paid calls are $0.01. Expect multiple queries per task; page with LIMIT/OFFSET rather than requesting large result sets."
+    "agent_controlled_input": "?limit only (parsed and capped)",
+    "note": "Paid calls are $0.01. Page with limit rather than requesting large result sets."
   },
 
   "tags": [
@@ -69,265 +71,243 @@
 
   "skills": [
     {
-      "id": "wallet-history",
-      "name": "Wallet ledger (FREE)",
-      "description": "FREE. Full enriched event ledger for a single wallet: events, threat assessments, anomaly scores, timestamps. No payment required - use this to verify the rail before paying.",
-      "tags": ["free", "wallet", "ledger", "solana", "probe"],
+      "id": "stats",
+      "name": "Threat distribution (FREE)",
+      "description": "FREE. Live counts of enriched events by threat tier. Confirms corpus depth and rail liveness. No payment required.",
+      "tags": ["free", "meta", "stats", "probe"],
       "x-pricing": { "free": true },
-      "x-endpoint": "/api/v2/ledger/{wallet}",
-      "x-capability": "urn:sntl:wallet-history",
-      "examples": ["Get the enriched event ledger for wallet 3S8mLQgv849WeLMNH43BXLBCreJQQatnxazFH7vk1PJG"]
+      "x-endpoint": "GET /api/v2/stats",
+      "examples": ["GET /api/v2/stats"]
     },
     {
-      "id": "stats",
-      "name": "Datalake stats (FREE)",
-      "description": "FREE. Live datalake vitals: total enriched events, shard coverage, threat-tier distribution, latest block_time. Confirms the rail is live and how deep the corpus runs.",
-      "tags": ["free", "stats", "health", "probe"],
+      "id": "wallet-history",
+      "name": "Wallet ledger (FREE)",
+      "description": "FREE. Enriched event ledger for a single wallet. No payment required - use this to verify the rail before paying.",
+      "tags": ["free", "wallet", "ledger", "solana", "probe"],
       "x-pricing": { "free": true },
-      "x-endpoint": "/api/v2/stats",
-      "x-capability": "urn:sntl:stats",
-      "examples": ["How many enriched events are indexed and how fresh is the newest one?"]
+      "x-endpoint": "GET /api/v2/ledger/{wallet}",
+      "examples": ["GET /api/v2/ledger/3S8mLQgv849WeLMNH43BXLBCreJQQatnxazFH7vk1PJG"]
     },
 
     {
       "id": "query-datalake",
       "name": "Query the Helium intelligence datalake",
-      "description": "Run a read-only SQL SELECT over enriched Helium/Solana events. Sandboxed: SELECT-only, LIMIT<=100, allow-listed tables. Returns rows + rowCount.",
+      "description": "Run a read-only SQL SELECT over enriched Helium/Solana events. Sandboxed: SELECT-only, LIMIT<=100, allow-listed tables. Returns rows + rowCount. $0.01 USDC/call.",
       "tags": ["sql", "datalake", "enriched-events", "threat-intel", "anomaly"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/query",
-      "x-capability": "urn:sntl:query-datalake",
+      "x-endpoint": "POST /api/v2/query",
       "examples": ["SELECT transaction_id, threat_assessment, anomaly_score, summary FROM enriched_events_base WHERE threat_assessment = 'critical' ORDER BY block_time DESC LIMIT 50"]
     },
     {
       "id": "lookup-event",
       "name": "Look up one enriched event",
-      "description": "Fetch a single enriched event object by transaction signature: classification, anomaly score, shard, geo, narrative summary.",
+      "description": "Fetch a single enriched event by transaction signature. $0.01 USDC/call.",
       "tags": ["event", "lookup", "forensics"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/event/{signature}",
-      "x-capability": "urn:sntl:lookup-event",
-      "examples": ["Look up enriched event 2mCN9t17..."]
+      "x-endpoint": "GET /api/v2/event/{signature}",
+      "examples": ["GET /api/v2/event/2mCN9t17"]
     },
+
     {
       "id": "threats-critical",
       "name": "Critical threats",
-      "description": "Most recent events classified CRITICAL by the enrichment pipeline.",
-      "tags": ["threat", "critical", "security"],
+      "description": "Enriched Helium/Solana events classified CRITICAL threat. $0.01 USDC/call.",
+      "tags": ["threat", "critical", "security", "depin", "helium"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/threats/critical",
-      "x-capability": "urn:sntl:threats-critical",
-      "examples": ["List the 25 most recent critical threats."]
+      "x-endpoint": "GET /api/v2/threats/critical",
+      "examples": ["GET /api/v2/threats/critical?limit=50"]
     },
     {
       "id": "threats-high",
       "name": "High threats",
-      "description": "Most recent events classified HIGH.",
-      "tags": ["threat", "high", "security"],
+      "description": "Enriched events classified HIGH threat. $0.01 USDC/call.",
+      "tags": ["threat", "high", "security", "depin", "helium"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/threats/high",
-      "x-capability": "urn:sntl:threats-high",
-      "examples": ["Show high-severity threats from the last 24 hours."]
+      "x-endpoint": "GET /api/v2/threats/high",
+      "examples": ["GET /api/v2/threats/high?limit=50"]
     },
     {
       "id": "threats-medium",
       "name": "Medium threats",
-      "description": "Most recent events classified MEDIUM.",
-      "tags": ["threat", "medium", "security"],
+      "description": "Enriched events classified MEDIUM threat. $0.01 USDC/call.",
+      "tags": ["threat", "medium", "security", "depin", "helium"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/threats/medium",
-      "x-capability": "urn:sntl:threats-medium",
-      "examples": ["Show medium-severity threats."]
+      "x-endpoint": "GET /api/v2/threats/medium",
+      "examples": ["GET /api/v2/threats/medium?limit=50"]
     },
     {
       "id": "threats-low",
       "name": "Low threats",
-      "description": "Most recent events classified LOW - baseline network noise floor.",
-      "tags": ["threat", "low", "baseline"],
+      "description": "Enriched events classified LOW threat. $0.01 USDC/call.",
+      "tags": ["threat", "low", "security", "depin", "helium"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/threats/low",
-      "x-capability": "urn:sntl:threats-low",
-      "examples": ["Sample the low-threat baseline."]
-    },
-    {
-      "id": "anomalies",
-      "name": "Anomaly feed",
-      "description": "Events surfaced by the anomaly scorer, ordered by signal strength.",
-      "tags": ["anomaly", "scoring", "detection"],
-      "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/anomalies",
-      "x-capability": "urn:sntl:anomalies",
-      "examples": ["Return the strongest anomaly signals currently indexed."]
-    },
-    {
-      "id": "anomaly-critical-wallets",
-      "name": "Critical anomaly wallets",
-      "description": "Wallets whose aggregate anomaly profile lands in the critical band.",
-      "tags": ["anomaly", "wallet-risk", "aml"],
-      "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/anomaly/critical-wallets",
-      "x-capability": "urn:sntl:anomaly-critical-wallets",
-      "examples": ["Which wallets score critical on anomaly?"]
-    },
-    {
-      "id": "anomaly-medium-wallets",
-      "name": "Medium anomaly wallets",
-      "description": "Wallets whose aggregate anomaly profile lands in the medium band.",
-      "tags": ["anomaly", "wallet-risk"],
-      "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/anomaly/medium-wallets",
-      "x-capability": "urn:sntl:anomaly-medium-wallets",
-      "examples": ["List medium-band anomaly wallets."]
-    },
-    {
-      "id": "hvt-anomaly",
-      "name": "High-value target anomalies",
-      "description": "Intersection of high-value wallets and anomalous behavior - the priority triage set.",
-      "tags": ["hvt", "anomaly", "triage", "wallet-risk"],
-      "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/hvt/anomaly",
-      "x-capability": "urn:sntl:hvt-anomaly",
-      "examples": ["Which high-value wallets are behaving anomalously?"]
-    },
-    {
-      "id": "geo-hotspots",
-      "name": "Geospatial hotspots (H3)",
-      "description": "Event density and threat concentration resolved to H3 hexagonal cells. Returns cell index, lat/lng, counts.",
-      "tags": ["geospatial", "h3", "hotspot", "depin"],
-      "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/geo/hotspots",
-      "x-capability": "urn:sntl:geo-hotspots",
-      "examples": ["Which H3 cells carry the highest threat density?"]
-    },
-    {
-      "id": "world-state-chronicle",
-      "name": "World-state chronicle",
-      "description": "Forensic space-time-power narrative: what happened, where, when, and with what network effect.",
-      "tags": ["forensics", "chronicle", "narrative", "space-time"],
-      "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/chronicle",
-      "x-capability": "urn:sntl:world-state-chronicle",
-      "examples": ["Give the world-state chronicle for the last 6 hours."]
-    },
-    {
-      "id": "escalation-ledger",
-      "name": "LLM escalation ledger",
-      "description": "Tiered LLM escalation verdicts: which events were escalated, to which tier, and the synthesized judgment.",
-      "tags": ["llm", "escalation", "verdict", "synthesis"],
-      "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/escalation-ledger",
-      "x-capability": "urn:sntl:escalation-ledger",
-      "examples": ["Show recent escalations and their verdicts."]
+      "x-endpoint": "GET /api/v2/threats/low",
+      "examples": ["GET /api/v2/threats/low?limit=50"]
     },
     {
       "id": "pending-loops",
-      "name": "Pending enrichment loops",
-      "description": "Events currently mid-enrichment - the live edge of the pipeline.",
-      "tags": ["pipeline", "pending", "liveness"],
+      "name": "Pending open-loops",
+      "description": "Events where threat assessment started but never resolved. $0.01 USDC/call.",
+      "tags": ["threat", "pending", "open-loop", "depin", "helium"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/pending-loops",
-      "x-capability": "urn:sntl:pending-loops",
-      "examples": ["What is currently in flight in the enrichment pipeline?"]
+      "x-endpoint": "GET /api/v2/threats/pending",
+      "examples": ["GET /api/v2/threats/pending?limit=50"]
     },
     {
-      "id": "connected",
-      "name": "Connected entities",
-      "description": "Graph of wallets/programs connected through shared events, entities, or transfers.",
-      "tags": ["graph", "entity", "clustering"],
+      "id": "anomalies",
+      "name": "Top anomalies",
+      "description": "Highest anomaly-score enriched events (observed score range 0..0.6). $0.01 USDC/call.",
+      "tags": ["anomaly", "scoring", "depin", "helium"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/connected",
-      "x-capability": "urn:sntl:connected",
-      "examples": ["Which wallets are connected to this address?"]
+      "x-endpoint": "GET /api/v2/anomalies",
+      "examples": ["GET /api/v2/anomalies?limit=50"]
     },
+
     {
-      "id": "wallet-pool",
-      "name": "Wallet pool",
-      "description": "The full scored wallet universe indexed by the datalake.",
-      "tags": ["wallet", "pool", "segmentation"],
+      "id": "architects",
+      "name": "Architects (cNFT blast)",
+      "description": "Wallets that received a cNFT blast across all campaigns. $0.01 USDC/call.",
+      "tags": ["wallet", "audience", "cnft", "architects"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/wallet-pool",
-      "x-capability": "urn:sntl:wallet-pool",
-      "examples": ["How large is the scored wallet universe?"]
+      "x-endpoint": "GET /api/v2/wallets/architects",
+      "examples": ["GET /api/v2/wallets/architects?limit=50"]
     },
     {
       "id": "target-wallets",
       "name": "Target wallets",
-      "description": "Wallets matching the active targeting criteria across engagement and risk dimensions.",
-      "tags": ["wallet", "targeting", "segmentation"],
+      "description": "Scored, invite-tracked target wallet pool. $0.01 USDC/call.",
+      "tags": ["wallet", "audience", "scored", "target"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/target-wallets",
-      "x-capability": "urn:sntl:target-wallets",
-      "examples": ["Return the current target wallet set."]
+      "x-endpoint": "GET /api/v2/wallets/target",
+      "examples": ["GET /api/v2/wallets/target?limit=50"]
     },
     {
-      "id": "architects",
-      "name": "Architects cohort",
-      "description": "The Architects cohort - highest-engagement operators in the Helium network.",
-      "tags": ["cohort", "engagement", "architects"],
+      "id": "hvt-anomaly",
+      "name": "HVT anomaly pool",
+      "description": "High-value-target anomaly wallets (authoritative HVT segment). $0.01 USDC/call.",
+      "tags": ["wallet", "audience", "hvt", "anomaly"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/architects",
-      "x-capability": "urn:sntl:architects",
-      "examples": ["Who are the Architects?"]
+      "x-endpoint": "GET /api/v2/wallets/hvt-anomaly",
+      "examples": ["GET /api/v2/wallets/hvt-anomaly?limit=50"]
     },
     {
-      "id": "tier-1",
-      "name": "Tier 1 wallets",
-      "description": "Deepest-engagement wallet segment (present on 6-7 campaign lists).",
-      "tags": ["tier", "engagement", "segmentation"],
+      "id": "wallet-pool",
+      "name": "Wallet pool",
+      "description": "Generic scored wallet pool. $0.01 USDC/call.",
+      "tags": ["wallet", "audience", "pool"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/tier-1",
-      "x-capability": "urn:sntl:tier-1",
-      "examples": ["List Tier 1 wallets."]
+      "x-endpoint": "GET /api/v2/wallets/pool",
+      "examples": ["GET /api/v2/wallets/pool?limit=50"]
     },
     {
-      "id": "tier-2",
-      "name": "Tier 2 wallets",
-      "description": "Mid-engagement wallet segment.",
-      "tags": ["tier", "engagement", "segmentation"],
+      "id": "connected",
+      "name": "Connected (unpaid)",
+      "description": "Authenticated humans who hit the paywall, unpaid. $0.01 USDC/call.",
+      "tags": ["wallet", "audience", "connected", "lead"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/tier-2",
-      "x-capability": "urn:sntl:tier-2",
-      "examples": ["List Tier 2 wallets."]
-    },
-    {
-      "id": "tier-3",
-      "name": "Tier 3 wallets",
-      "description": "Broad-engagement wallet segment - the widest addressable band.",
-      "tags": ["tier", "engagement", "segmentation"],
-      "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/tier-3",
-      "x-capability": "urn:sntl:tier-3",
-      "examples": ["List Tier 3 wallets."]
+      "x-endpoint": "GET /api/v2/wallets/connected",
+      "examples": ["GET /api/v2/wallets/connected?limit=50"]
     },
     {
       "id": "blink-ready",
-      "name": "Blink-ready events",
-      "description": "Events flagged as actionable - staged for Solana Blink / action surfaces.",
-      "tags": ["blink", "actionable", "solana"],
+      "name": "Blink-ready wallets",
+      "description": "Wallets flagged blink-ready for action. $0.01 USDC/call.",
+      "tags": ["wallet", "audience", "blink", "action"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/blink-ready",
-      "x-capability": "urn:sntl:blink-ready",
-      "examples": ["Which events are blink-ready?"]
+      "x-endpoint": "GET /api/v2/wallets/blink-ready",
+      "examples": ["GET /api/v2/wallets/blink-ready?limit=50"]
+    },
+    {
+      "id": "anomaly-critical-wallets",
+      "name": "Critical-anomaly wallets",
+      "description": "Wallets behind critical-tier events. $0.01 USDC/call.",
+      "tags": ["wallet", "audience", "critical", "anomaly"],
+      "x-pricing": { "usdc": 0.01 },
+      "x-endpoint": "GET /api/v2/wallets/critical",
+      "examples": ["GET /api/v2/wallets/critical?limit=50"]
+    },
+    {
+      "id": "anomaly-medium-wallets",
+      "name": "Medium-anomaly wallets",
+      "description": "Wallets behind medium-tier events. $0.01 USDC/call.",
+      "tags": ["wallet", "audience", "medium", "anomaly"],
+      "x-pricing": { "usdc": 0.01 },
+      "x-endpoint": "GET /api/v2/wallets/medium",
+      "examples": ["GET /api/v2/wallets/medium?limit=50"]
     },
     {
       "id": "paid",
-      "name": "Settlement records",
-      "description": "x402 settlement records against this rail - on-chain-verifiable proof of agent-to-agent payment.",
-      "tags": ["x402", "settlement", "proof", "audit"],
+      "name": "Paid wallets",
+      "description": "Converted paying wallets. $0.01 USDC/call.",
+      "tags": ["wallet", "audience", "paid", "converted"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/paid",
-      "x-capability": "urn:sntl:paid",
-      "examples": ["Show recent x402 settlements against this rail."]
+      "x-endpoint": "GET /api/v2/wallets/paid",
+      "examples": ["GET /api/v2/wallets/paid?limit=50"]
+    },
+
+    {
+      "id": "tier-1",
+      "name": "Tier 1 (6-7 lists)",
+      "description": "Maximum-signal wallets appearing on 6+ independent lists. $0.01 USDC/call.",
+      "tags": ["wallet", "engagement", "tier-1", "signal"],
+      "x-pricing": { "usdc": 0.01 },
+      "x-endpoint": "GET /api/v2/pyramid/tier-1",
+      "examples": ["GET /api/v2/pyramid/tier-1?limit=50"]
+    },
+    {
+      "id": "tier-2",
+      "name": "Tier 2 (4-5 lists)",
+      "description": "Wallets appearing on 4-5 independent lists. $0.01 USDC/call.",
+      "tags": ["wallet", "engagement", "tier-2"],
+      "x-pricing": { "usdc": 0.01 },
+      "x-endpoint": "GET /api/v2/pyramid/tier-2",
+      "examples": ["GET /api/v2/pyramid/tier-2?limit=50"]
+    },
+    {
+      "id": "tier-3",
+      "name": "Tier 3 (2-3 lists)",
+      "description": "Wallets appearing on 2-3 independent lists. $0.01 USDC/call.",
+      "tags": ["wallet", "engagement", "tier-3"],
+      "x-pricing": { "usdc": 0.01 },
+      "x-endpoint": "GET /api/v2/pyramid/tier-3",
+      "examples": ["GET /api/v2/pyramid/tier-3?limit=50"]
+    },
+
+    {
+      "id": "world-state-chronicle",
+      "name": "World-state chronicle",
+      "description": "Time / space / power dimensional event chains. $0.01 USDC/call.",
+      "tags": ["forensic", "chronicle", "dimensional", "helium"],
+      "x-pricing": { "usdc": 0.01 },
+      "x-endpoint": "GET /api/v2/chronicle",
+      "examples": ["GET /api/v2/chronicle?limit=50"]
+    },
+    {
+      "id": "geo-hotspots",
+      "name": "Geo hotspots (H3)",
+      "description": "H3 geospatial hotspot resolution. $0.01 USDC/call.",
+      "tags": ["forensic", "geo", "h3", "hotspot"],
+      "x-pricing": { "usdc": 0.01 },
+      "x-endpoint": "GET /api/v2/geo",
+      "examples": ["GET /api/v2/geo?limit=50"]
+    },
+    {
+      "id": "escalation-ledger",
+      "name": "LLM escalation ledger",
+      "description": "Tiered LLM verdict trail (SLM 0.5B -> SLM 3.5B -> LLM). $0.01 USDC/call.",
+      "tags": ["forensic", "llm", "escalation", "verdict"],
+      "x-pricing": { "usdc": 0.01 },
+      "x-endpoint": "GET /api/v2/escalation",
+      "examples": ["GET /api/v2/escalation?limit=50"]
     },
     {
       "id": "unparsed-dlq",
-      "name": "Dead-letter queue",
-      "description": "Events the parser could not classify - the honest residue. Useful for coverage auditing.",
-      "tags": ["dlq", "coverage", "audit", "honesty"],
+      "name": "Unparsed DLQ",
+      "description": "Failure-mode intelligence / dead-letter queue. $0.01 USDC/call.",
+      "tags": ["forensic", "dlq", "failure", "unparsed"],
       "x-pricing": { "usdc": 0.01 },
-      "x-endpoint": "/api/v2/unparsed-dlq",
-      "x-capability": "urn:sntl:unparsed-dlq",
-      "examples": ["What fraction of events fail to parse?"]
+      "x-endpoint": "GET /api/v2/dlq",
+      "examples": ["GET /api/v2/dlq?limit=50"]
     }
   ],
 
@@ -339,27 +319,3 @@
     "fallback_url": "https://pop-os.tail08831d.ts.net"
   }
 }
-
-
-
-
-
-#OLD STUFF BELOW
-
-# SNTL — pay-per-query intelligence for the Helium × Solana DePIN network
-
-![settled via x402](https://img.shields.io/badge/settled_via-x402-E8B04B) ![Solana](https://img.shields.io/badge/Solana-mainnet-14F195) ![protocol A2A](https://img.shields.io/badge/protocol-A2A-3B82F6) ![first tier free](https://img.shields.io/badge/first_tier-free-46C8A6)
-
-Query an AI-classified datalake of **600K+ on-chain events** — threat tiers (critical→low), anomaly scores, **geospatial hotspot resolution (H3)**, forensic **space·time·power chronicles**, tiered **LLM escalation verdicts**, and scored wallet/audience segments. **26 machine skills + raw SQL SELECT.** $0.01 USDC/call via **x402** on Solana mainnet — no signup, no API key, first tier free.
-
-Built for autonomous agents that need to check a Solana/Helium wallet, tx, or program and get back a classified, on-chain-verifiable answer. **The protocol is the UI.**
-
-**Live rail:** `https://a2a.sntl.site` · agent card at `/.well-known/agent-card.json`
-
-Live-rail settlement proof (Solana):
-`2TEnsbpuxLC3qsCLAf4MB2XfUbr2SF4B34vjpkV1Yzq2BeDqVuTzmEo6UX3SXFDkKRWMYtbSJ6K8GcuNZt7J939c`
-
-Plug the rail into any MCP host → **[helium-mcp](https://github.com/substreambc/helium-mcp)**.
-
----
-**Web3 Solutions, LLC** · [sntl.site](https://sntl.site)
