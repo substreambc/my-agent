@@ -316,6 +316,7 @@
     "ai_manifest": "https://a2a.sntl.site/.well-known/ai.json",
     "free_probe": "https://a2a.sntl.site/api/v2/stats",
     "mcp_repository": "https://github.com/substreambc/helium-mcp",
+    "mcp_package": "@web3solutions33/helium-mcp",
     "fallback_url": "https://pop-os.tail08831d.ts.net"
   }
 }
