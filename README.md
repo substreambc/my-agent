@@ -1,4 +1,4 @@
-# SNTL — pay-per-query intelligence for the Helium × Solana DePIN network
+# SNTL — pay-per-query intelligence for Helium, Solana, and DePIN
 
 Query an AI-classified datalake of enriched on-chain events — threat tiers (critical→low), anomaly scores, H3 geospatial hotspot resolution, forensic space·time·power chronicles, tiered LLM escalation verdicts, and scored wallet/audience segments.
 
@@ -13,17 +13,17 @@ Built for autonomous agents that need to check a Solana/Helium wallet, tx, or pr
 
 ```bash
 # corpus depth + rail liveness
-curl -s https://a2a.sntl.site/api/v2/stats
+curl -s https://pop-os.tail08831d.ts.net/api/v2/stats
 
 # enriched ledger for any wallet
-curl -s https://a2a.sntl.site/api/v2/ledger/<WALLET>
+curl -s https://pop-os.tail08831d.ts.net/api/v2/ledger/<WALLET>
 ```
 
 ## Paid call — x402
 
 ```bash
 # 1. request → 402 with payment requirements
-curl -i https://a2a.sntl.site/api/v2/threats/critical?limit=50
+curl -i https://pop-os.tail08831d.ts.net/api/v2/threats/critical?limit=50
 
 # 2. resubmit with X-PAYMENT header (gasless, via PayAI facilitator)
 ```
@@ -42,10 +42,10 @@ curl -i https://a2a.sntl.site/api/v2/threats/critical?limit=50
 
 | Surface | URL |
 |---|---|
-| Agent card | `https://a2a.sntl.site/.well-known/agent-card.json` |
-| AI manifest | `https://a2a.sntl.site/.well-known/ai.json` |
-| OpenAPI | `https://a2a.sntl.site/openapi.json` |
-| llms.txt | `https://a2a.sntl.site/llms.txt` |
+| Agent card | `https://pop-os.tail08831d.ts.net/.well-known/agent-card.json` |
+| AI manifest | `https://pop-os.tail08831d.ts.net/.well-known/ai.json` |
+| OpenAPI | `https://pop-os.tail08831d.ts.net/openapi.json` |
+| llms.txt | `https://pop-os.tail08831d.ts.net/llms.txt` |
 
 ---
 
@@ -158,4 +158,4 @@ Repo: [substreambc/helium-mcp](https://github.com/substreambc/helium-mcp) · npm
 
 ---
 
-**Web3 Solutions, LLC** · [sntl.site](https://sntl.site) · [a2a.sntl.site](https://a2a.sntl.site)
+**Web3 Solutions, LLC** · [https://pop-os.tail08831d.ts.net](https://pop-os.tail08831d.ts.net) · [https://pop-os.tail08831d.ts.net](https://pop-os.tail08831d.ts.net)
