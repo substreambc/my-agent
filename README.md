@@ -1,11 +1,12 @@
-# SNTL — pay-per-query intelligence for Helium, Solana, and DePIN
+# SNTL LIVE SUBSTREAM Helium Network, Solana
+Pay-per-query intelligence for DePIN infrastructure
 
 Query an AI-classified datalake of enriched on-chain events — threat tiers (critical→low), anomaly scores, H3 geospatial hotspot resolution, forensic space·time·power chronicles, tiered LLM escalation verdicts, and scored wallet/audience segments.
 
 **26 machine skills · 2 free · $0.01 USDC/call via x402 on Solana mainnet.**
 No signup. No API key. No CDP.
 
-Built for autonomous agents that need to check a Solana/Helium wallet, tx, or program and get back a classified, on-chain-verifiable answer. **The protocol is the UI.**
+Built for agents that need to check a Solana/Helium wallet, tx, or program and get back a classified, on-chain-verifiable answer. **The protocol is the UI.**
 
 ---
 
