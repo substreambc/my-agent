@@ -1,4 +1,4 @@
-# SNTL LIVE SUBSTREAM Helium Network, Solana
+# SNTL LIVE Data Helium Network 450,000+ tx sig, Solana
 Pay-per-query intelligence for DePIN infrastructure
 
 Query an AI-classified datalake of enriched on-chain events — threat tiers (critical→low), anomaly scores, H3 geospatial hotspot resolution, forensic space·time·power chronicles, tiered LLM escalation verdicts, and scored wallet/audience segments.
