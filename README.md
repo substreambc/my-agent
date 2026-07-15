@@ -6,11 +6,22 @@ Query an AI-classified datalake of enriched on-chain events — threat tiers (cr
 **26 machine skills · 2 free · $0.01 USDC/call via x402 on Solana mainnet.**
 No signup. No API key. No CDP.
 
+Table Name               │     Live Row Count      │ Technical Classification
+  ──────────────────────────┼─────────────────────────┼──────────────────────────────────────────────────────
+    solana_raw_data         │         724,198         │ Raw ingested Solana transaction payloads
+    enriched_events_base    │         483,140         │ AI-graded DePIN threat/anomaly events
+    world_state_chronicle   │         406,453         │ Forensic causal chains and state transition history
+    sentinel_logs           │         80,309          │ Agent/sentinel execution logs and heartbeat tracking
+    unparsed_events         │         69,270          │ Ingestion staging queue
+    events_lazy             │         62,145          │ Lazy-loaded DePIN intelligence events
+    ai_escalation_ledger    │         46,906          │ AI threat tier escalations
+    hotspot_location        │         38,262          │ Physical DePIN node geospatial coordinates
+
 Built for agents that need to check a Solana/Helium wallet, tx, or program and get back a classified, on-chain-verifiable answer. **The protocol is the UI.**
 
 ---
 
-## Quick start — free, no payment
+## Quick start — free, no payment (JUST DOWNLOAD AGENT CARD AND DROP INTO YOUR FAVORITE AI)
 
 ```bash
 # corpus depth + rail liveness
