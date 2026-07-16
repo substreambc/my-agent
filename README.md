@@ -1,5 +1,5 @@
-# SNTL LIVE Data Helium Network 450,000+ tx sig, Solana
-Pay-per-query intelligence for DePIN infrastructure
+# SNTL LIVE Data Helium Network 1-year history tx sigs, Solana
+Pay-per-query intelligence for DePIN infrastructure with MCP and MCP On-bording-helper "helium-mcp"  
 
 Query an AI-classified datalake of enriched on-chain events — threat tiers (critical→low), anomaly scores, H3 geospatial hotspot resolution, forensic space·time·power chronicles, tiered LLM escalation verdicts, and scored wallet/audience segments.
 
