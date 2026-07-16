@@ -318,5 +318,14 @@
     "mcp_repository": "https://github.com/substreambc/helium-mcp",
     "mcp_package": "@web3solutions33/helium-mcp",
     "fallback_url": "https://pop-os.tail08831d.ts.net"
-  }
+  },
+  "related_agents": [
+    {
+      "name": "SNTL Helium Intelligence (MCP)",
+      "relation": "same-rail",
+      "description": "Machine-first x402-metered MCP server for the same Helium/Solana DePIN datalake. Drop into any MCP host.",
+      "url": "https://github.com/substreambc/helium-mcp",
+      "agent_card": "https://pop-os.tail08831d.ts.net/.well-known/agent-card.json"
+    }
+  ]
 }
