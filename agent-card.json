@@ -1,8 +1,8 @@
 {
   "protocolVersion": "1.0",
-  "name": "SNTL Real-time, live, Helium and Geo-spatial Intelligence 1M records (1 Year History)",
-  "display_name": "SNTL: DePIN Spatial Intelligence & x402 rail to SQL DataLake",
-  "description": "Pay-per-query intelligence for the Helium, Solana, and DePIN. Query an AI-classified datalake of enriched on-chain events across 12 program shards: threat tiers (critical->low), anomaly scores, H3 geospatial hotspot resolution, forensic space-time-power chronicles, tiered LLM escalation verdicts, and scored wallet/audience segments. 26 machine skills plus sandboxed SQL SELECT (SELECT-only, LIMIT<=100, allow-listed tables). $0.01 USDC per call via x402 on Solana mainnet - no signup, no API key. Two skills are free: probe before you pay. Built for autonomous agents that need to check a Solana/Helium wallet, tx, or program and get back a classified, on-chain-verifiable answer. The protocol is the UI. https://pop-os.tail08831d.ts.net",
+  "name": "SNTL DePIN Oracle",
+  "display_name": "SNTL DePIN Oracle",
+  "description": "Pay-per-query datalake for the Helium and Solana DePIN network. Query an AI-classified datalake of enriched on-chain events: threat tiers (critical to low), anomaly scores, H3 geospatial hotspot resolution, forensic space-time-power chronicles, tiered LLM escalation verdicts, and scored wallet/audience segments. Sandboxed SQL SELECT, LIMIT 1, allow-listed tables. Tiered x402 settlement on Solana mainnet - no signup, no API key. Two skills are free: probe before you pay. Built for Agent2Agent (A2A) agents to check a Solana/Helium wallet, tx, or program and get back an on-chain-verifiable answer. https://pop-os.tail08831d.ts.net",
   "version": "2.1.1",
   "url": "https://pop-os.tail08831d.ts.net/api/v2",
   "preferredTransport": "JSONRPC",
@@ -19,7 +19,7 @@
     "extensions": [
       {
         "uri": "https://github.com/google-a2a/a2a-x402/v0.1",
-        "description": "Pay-per-call via x402 - $0.01 USDC on Solana mainnet, gasless via PayAI facilitator. No signup, no API key, no CDP.",
+        "description": "Pay-per-call via x402 - tiered USDC on Solana mainnet, gasless via PayAI facilitator. No signup, no API key, no CDP.",
         "required": true,
         "params": {
           "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
@@ -29,7 +29,7 @@
           "price_usdc": 0.01,
           "facilitator": "https://facilitator.payai.network",
           "proof_tx": "2TEnsbpuxLC3qsCLAf4MB2XfUbr2SF4B34vjpkV1Yzq2BeDqVuTzmEo6UX3SXFDkKRWMYtbSJ6K8GcuNZt7J939c",
-          "proof_note": "Live-rail agent-to-agent settlement, verifiable on Solana mainnet."
+          "proof_note": "Live-rail Agent2Agent (A2A) settlement, verifiable on Solana mainnet."
         }
       }
     ]
@@ -39,7 +39,7 @@
     "x402": {
       "type": "http",
       "scheme": "x402",
-      "description": "Per-query settlement. Server returns 402 with accepts:[PaymentRequirements]; client resubmits with X-PAYMENT header. Solana mainnet USDC, gasless via PayAI facilitator. $0.01 per paid call. Free skills require no payment."
+      "description": "Per-query settlement. Server returns 402 with accepts:[PaymentRequirements]; client resubmits with X-PAYMENT header. Solana mainnet USDC, gasless via PayAI facilitator. Tiered pricing per record. Free skills require no payment."
     }
   },
   "security": [{ "x402": [] }],
@@ -54,19 +54,19 @@
 
   "x-limits": {
     "sql_select_only": true,
-    "default_rows": 50,
-    "max_rows": 100,
+    "default_rows": 1,
+    "max_rows": 1,
     "allow_listed_tables": true,
-    "agent_controlled_input": "?limit only (parsed and capped)",
-    "note": "Paid calls are $0.01. Page with limit rather than requesting large result sets."
+    "agent_controlled_input": "?limit only (parsed and capped at 1)",
+    "note": "All paid calls enforce LIMIT 1 per record. No pagination."
   },
 
   "tags": [
-    "threat-intelligence", "anomaly-detection", "wallet-risk", "aml",
+    "threat-detection", "anomaly-detection", "wallet-risk", "aml",
     "forensics", "security", "fraud-detection", "helium", "solana",
     "depin", "on-chain-analytics", "blockchain-intelligence", "web3-security",
-    "x402", "pay-per-query", "agent-to-agent", "m2m", "sql-datalake",
-    "h3", "geospatial", "mcp"
+    "x402", "pay-per-query", "Agent2Agent", "A2A", "sql-datalake",
+    "h3", "geospatial", "MCP"
   ],
 
   "skills": [
@@ -77,7 +77,7 @@
       "tags": ["free", "meta", "stats", "probe"],
       "x-pricing": { "free": true },
       "x-endpoint": "GET /api/v2/stats",
-      "examples": ["GET /api/v2/stats"]
+      "examples": ["GET /api/v2/stats?limit=1"]
     },
     {
       "id": "wallet-history",
@@ -86,228 +86,228 @@
       "tags": ["free", "wallet", "ledger", "solana", "probe"],
       "x-pricing": { "free": true },
       "x-endpoint": "GET /api/v2/ledger/{wallet}",
-      "examples": ["GET /api/v2/ledger/3S8mLQgv849WeLMNH43BXLBCreJQQatnxazFH7vk1PJG"]
+      "examples": ["GET /api/v2/ledger/3S8mLQgv849WeLMNH43BXLBCreJQQatnxazFH7vk1PJG?limit=1"]
     },
 
     {
       "id": "query-datalake",
-      "name": "Query the Helium intelligence datalake",
-      "description": "Run a read-only SQL SELECT over enriched Helium/Solana events. Sandboxed: SELECT-only, LIMIT<=100, allow-listed tables. Returns rows + rowCount. $0.01 USDC/call.",
+      "name": "Query the Helium datalake",
+      "description": "Run a read-only SQL SELECT over enriched Helium/Solana events. Sandboxed: SELECT-only, LIMIT 1, allow-listed tables. Returns rows + rowCount. Tiered x402 pricing per record.",
       "tags": ["sql", "datalake", "enriched-events", "threat-intel", "anomaly"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "POST /api/v2/query",
-      "examples": ["SELECT transaction_id, threat_assessment, anomaly_score, summary FROM enriched_events_base WHERE threat_assessment = 'critical' ORDER BY block_time DESC LIMIT 50"]
+      "examples": ["SELECT transaction_id, threat_assessment, anomaly_score, summary FROM enriched_events_base WHERE threat_assessment = 'critical' ORDER BY block_time DESC LIMIT 1"]
     },
     {
       "id": "lookup-event",
       "name": "Look up one enriched event",
-      "description": "Fetch a single enriched event by transaction signature. $0.01 USDC/call.",
+      "description": "Fetch a single enriched event by transaction signature. Tiered x402 pricing per record.",
       "tags": ["event", "lookup", "forensics"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/event/{signature}",
-      "examples": ["GET /api/v2/event/2mCN9t17"]
+      "examples": ["GET /api/v2/event/2mCN9t17?limit=1"]
     },
 
     {
       "id": "threats-critical",
       "name": "Critical threats",
-      "description": "Enriched Helium/Solana events classified CRITICAL threat. $0.01 USDC/call.",
+      "description": "Enriched Helium/Solana events classified CRITICAL threat. $1.00 USDC per record.",
       "tags": ["threat", "critical", "security", "depin", "helium"],
-      "x-pricing": { "usdc": 0.01 },
+      "x-pricing": { "usdc": 1.00 },
       "x-endpoint": "GET /api/v2/threats/critical",
-      "examples": ["GET /api/v2/threats/critical?limit=50"]
+      "examples": ["GET /api/v2/threats/critical?limit=1"]
     },
     {
       "id": "threats-high",
       "name": "High threats",
-      "description": "Enriched events classified HIGH threat. $0.01 USDC/call.",
+      "description": "Enriched events classified HIGH threat. $0.75 USDC per record.",
       "tags": ["threat", "high", "security", "depin", "helium"],
-      "x-pricing": { "usdc": 0.01 },
+      "x-pricing": { "usdc": 0.75 },
       "x-endpoint": "GET /api/v2/threats/high",
-      "examples": ["GET /api/v2/threats/high?limit=50"]
+      "examples": ["GET /api/v2/threats/high?limit=1"]
     },
     {
       "id": "threats-medium",
       "name": "Medium threats",
-      "description": "Enriched events classified MEDIUM threat. $0.01 USDC/call.",
+      "description": "Enriched events classified MEDIUM threat. $0.50 USDC per record.",
       "tags": ["threat", "medium", "security", "depin", "helium"],
-      "x-pricing": { "usdc": 0.01 },
+      "x-pricing": { "usdc": 0.50 },
       "x-endpoint": "GET /api/v2/threats/medium",
-      "examples": ["GET /api/v2/threats/medium?limit=50"]
+      "examples": ["GET /api/v2/threats/medium?limit=1"]
     },
     {
       "id": "threats-low",
       "name": "Low threats",
-      "description": "Enriched events classified LOW threat. $0.01 USDC/call.",
+      "description": "Enriched events classified LOW threat. $0.01 USDC per record.",
       "tags": ["threat", "low", "security", "depin", "helium"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/threats/low",
-      "examples": ["GET /api/v2/threats/low?limit=50"]
+      "examples": ["GET /api/v2/threats/low?limit=1"]
     },
     {
       "id": "pending-loops",
       "name": "Pending open-loops",
-      "description": "Events where threat assessment started but never resolved. $0.01 USDC/call.",
+      "description": "Events where threat assessment started but never resolved. $0.01 USDC per record.",
       "tags": ["threat", "pending", "open-loop", "depin", "helium"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/threats/pending",
-      "examples": ["GET /api/v2/threats/pending?limit=50"]
+      "examples": ["GET /api/v2/threats/pending?limit=1"]
     },
     {
       "id": "anomalies",
       "name": "Top anomalies",
-      "description": "Highest anomaly-score enriched events (observed score range 0..0.6). $0.01 USDC/call.",
+      "description": "Highest anomaly-score enriched events. $0.01 USDC per record.",
       "tags": ["anomaly", "scoring", "depin", "helium"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/anomalies",
-      "examples": ["GET /api/v2/anomalies?limit=50"]
+      "examples": ["GET /api/v2/anomalies?limit=1"]
     },
 
     {
       "id": "architects",
-      "name": "Architects (cNFT blast)",
-      "description": "Wallets that received a cNFT blast across all campaigns. $0.01 USDC/call.",
+      "name": "Architects",
+      "description": "Wallets that received a cNFT blast across all campaigns. $0.01 USDC per record.",
       "tags": ["wallet", "audience", "cnft", "architects"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/wallets/architects",
-      "examples": ["GET /api/v2/wallets/architects?limit=50"]
+      "examples": ["GET /api/v2/wallets/architects?limit=1"]
     },
     {
       "id": "target-wallets",
       "name": "Target wallets",
-      "description": "Scored, invite-tracked target wallet pool. $0.01 USDC/call.",
+      "description": "Scored, invite-tracked target wallet pool. $0.01 USDC per record.",
       "tags": ["wallet", "audience", "scored", "target"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/wallets/target",
-      "examples": ["GET /api/v2/wallets/target?limit=50"]
+      "examples": ["GET /api/v2/wallets/target?limit=1"]
     },
     {
       "id": "hvt-anomaly",
       "name": "HVT anomaly pool",
-      "description": "High-value-target anomaly wallets (authoritative HVT segment). $0.01 USDC/call.",
+      "description": "High-value-target anomaly wallets. $0.01 USDC per record.",
       "tags": ["wallet", "audience", "hvt", "anomaly"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/wallets/hvt-anomaly",
-      "examples": ["GET /api/v2/wallets/hvt-anomaly?limit=50"]
+      "examples": ["GET /api/v2/wallets/hvt-anomaly?limit=1"]
     },
     {
       "id": "wallet-pool",
       "name": "Wallet pool",
-      "description": "Generic scored wallet pool. $0.01 USDC/call.",
+      "description": "Generic scored wallet pool. $0.01 USDC per record.",
       "tags": ["wallet", "audience", "pool"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/wallets/pool",
-      "examples": ["GET /api/v2/wallets/pool?limit=50"]
+      "examples": ["GET /api/v2/wallets/pool?limit=1"]
     },
     {
       "id": "connected",
-      "name": "Connected (unpaid)",
-      "description": "Authenticated humans who hit the paywall, unpaid. $0.01 USDC/call.",
+      "name": "Connected",
+      "description": "Authenticated agents who hit the paywall, unpaid. $0.01 USDC per record.",
       "tags": ["wallet", "audience", "connected", "lead"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/wallets/connected",
-      "examples": ["GET /api/v2/wallets/connected?limit=50"]
+      "examples": ["GET /api/v2/wallets/connected?limit=1"]
     },
     {
       "id": "blink-ready",
       "name": "Blink-ready wallets",
-      "description": "Wallets flagged blink-ready for action. $0.01 USDC/call.",
+      "description": "Wallets flagged blink-ready for action. $0.01 USDC per record.",
       "tags": ["wallet", "audience", "blink", "action"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/wallets/blink-ready",
-      "examples": ["GET /api/v2/wallets/blink-ready?limit=50"]
+      "examples": ["GET /api/v2/wallets/blink-ready?limit=1"]
     },
     {
       "id": "anomaly-critical-wallets",
       "name": "Critical-anomaly wallets",
-      "description": "Wallets behind critical-tier events. $0.01 USDC/call.",
+      "description": "Wallets behind critical-tier events. $0.01 USDC per record.",
       "tags": ["wallet", "audience", "critical", "anomaly"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/wallets/critical",
-      "examples": ["GET /api/v2/wallets/critical?limit=50"]
+      "examples": ["GET /api/v2/wallets/critical?limit=1"]
     },
     {
       "id": "anomaly-medium-wallets",
       "name": "Medium-anomaly wallets",
-      "description": "Wallets behind medium-tier events. $0.01 USDC/call.",
+      "description": "Wallets behind medium-tier events. $0.01 USDC per record.",
       "tags": ["wallet", "audience", "medium", "anomaly"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/wallets/medium",
-      "examples": ["GET /api/v2/wallets/medium?limit=50"]
+      "examples": ["GET /api/v2/wallets/medium?limit=1"]
     },
     {
       "id": "paid",
       "name": "Paid wallets",
-      "description": "Converted paying wallets. $0.01 USDC/call.",
+      "description": "Converted paying wallets. $0.01 USDC per record.",
       "tags": ["wallet", "audience", "paid", "converted"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/wallets/paid",
-      "examples": ["GET /api/v2/wallets/paid?limit=50"]
+      "examples": ["GET /api/v2/wallets/paid?limit=1"]
     },
 
     {
       "id": "tier-1",
-      "name": "Tier 1 (6-7 lists)",
-      "description": "Maximum-signal wallets appearing on 6+ independent lists. $0.01 USDC/call.",
+      "name": "Tier 1",
+      "description": "Maximum-signal wallets appearing on 6-7 independent lists. $1.00 USDC per record.",
       "tags": ["wallet", "engagement", "tier-1", "signal"],
-      "x-pricing": { "usdc": 0.01 },
+      "x-pricing": { "usdc": 1.00 },
       "x-endpoint": "GET /api/v2/pyramid/tier-1",
-      "examples": ["GET /api/v2/pyramid/tier-1?limit=50"]
+      "examples": ["GET /api/v2/pyramid/tier-1?limit=1"]
     },
     {
       "id": "tier-2",
-      "name": "Tier 2 (4-5 lists)",
-      "description": "Wallets appearing on 4-5 independent lists. $0.01 USDC/call.",
+      "name": "Tier 2",
+      "description": "Wallets appearing on 4-5 independent lists. $0.75 USDC per record.",
       "tags": ["wallet", "engagement", "tier-2"],
-      "x-pricing": { "usdc": 0.01 },
+      "x-pricing": { "usdc": 0.75 },
       "x-endpoint": "GET /api/v2/pyramid/tier-2",
-      "examples": ["GET /api/v2/pyramid/tier-2?limit=50"]
+      "examples": ["GET /api/v2/pyramid/tier-2?limit=1"]
     },
     {
       "id": "tier-3",
-      "name": "Tier 3 (2-3 lists)",
-      "description": "Wallets appearing on 2-3 independent lists. $0.01 USDC/call.",
+      "name": "Tier 3",
+      "description": "Wallets appearing on 2-3 independent lists. $0.50 USDC per record.",
       "tags": ["wallet", "engagement", "tier-3"],
-      "x-pricing": { "usdc": 0.01 },
+      "x-pricing": { "usdc": 0.50 },
       "x-endpoint": "GET /api/v2/pyramid/tier-3",
-      "examples": ["GET /api/v2/pyramid/tier-3?limit=50"]
+      "examples": ["GET /api/v2/pyramid/tier-3?limit=1"]
     },
 
     {
       "id": "world-state-chronicle",
       "name": "World-state chronicle",
-      "description": "Time / space / power dimensional event chains. $0.01 USDC/call.",
+      "description": "Time / space / power dimensional event chains. $0.01 USDC per record.",
       "tags": ["forensic", "chronicle", "dimensional", "helium"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/chronicle",
-      "examples": ["GET /api/v2/chronicle?limit=50"]
+      "examples": ["GET /api/v2/chronicle?limit=1"]
     },
     {
       "id": "geo-hotspots",
       "name": "Geo hotspots (H3)",
-      "description": "H3 geospatial hotspot resolution. $0.01 USDC/call.",
+      "description": "H3 geospatial hotspot resolution. $0.01 USDC per record.",
       "tags": ["forensic", "geo", "h3", "hotspot"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/geo",
-      "examples": ["GET /api/v2/geo?limit=50"]
+      "examples": ["GET /api/v2/geo?limit=1"]
     },
     {
       "id": "escalation-ledger",
       "name": "LLM escalation ledger",
-      "description": "Tiered LLM verdict trail (SLM 0.5B -> SLM 3.5B -> LLM). $0.01 USDC/call.",
+      "description": "Tiered LLM verdict trail (SLM 0.5B -> SLM 3.5B -> LLM). $0.01 USDC per record.",
       "tags": ["forensic", "llm", "escalation", "verdict"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/escalation",
-      "examples": ["GET /api/v2/escalation?limit=50"]
+      "examples": ["GET /api/v2/escalation?limit=1"]
     },
     {
       "id": "unparsed-dlq",
       "name": "Unparsed DLQ",
-      "description": "Failure-mode intelligence / dead-letter queue. $0.01 USDC/call.",
+      "description": "Failure-mode data / dead-letter queue. $0.01 USDC per record.",
       "tags": ["forensic", "dlq", "failure", "unparsed"],
       "x-pricing": { "usdc": 0.01 },
       "x-endpoint": "GET /api/v2/dlq",
-      "examples": ["GET /api/v2/dlq?limit=50"]
+      "examples": ["GET /api/v2/dlq?limit=1"]
     }
   ],
 
@@ -321,9 +321,9 @@
   },
   "related_agents": [
     {
-      "name": "SNTL Helium Intelligence (MCP)",
+      "name": "SNTL DePIN Oracle (MCP)",
       "relation": "same-rail",
-      "description": "Machine-first x402-metered MCP server for the same Helium/Solana DePIN datalake. Drop into any MCP host.",
+      "description": "Machine-first x402 MCP server for the same Helium/Solana DePIN datalake. Drop into any MCP host.",
       "url": "https://github.com/substreambc/helium-mcp",
       "agent_card": "https://pop-os.tail08831d.ts.net/.well-known/agent-card.json"
     }
