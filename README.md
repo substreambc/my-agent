@@ -7,7 +7,6 @@
 
 # ⚡ SNTL DePIN Solves Sybil: Agent Physical ID Attestation
 
-# SNTL Attestation — Spatiotemporal Agent ID
 
 RF-layer, physics-backed identity for autonomous agents. Anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle** birth record (geolocation · time · power), minted as a **cNFT with 100% royalties burned**. Verification is free for life on the blockchain itself.
 
