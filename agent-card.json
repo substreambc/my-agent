@@ -1,1 +1,122 @@
-{"name":"SNTL DePIN Oracle - Physical/Permenant ID Attestation","display_name":"SNTL Attestation — Spatiotemporal Agent ID","description":"RF-layer, physics-backed Spatiotemporal Agent ID — anchored by UID, RSSI, Wallet, and SIWX, with a World State Chronicle birth record (geolocation · time · power) minted as a cNFT with 100% royalties burned. Verification is free for life on the blockchain itself. SNTL solves Sybil for DePIN.","version":"3.1.0","url":"https://pop-os.tail08831d.ts.net","capabilities":{"streaming":false,"pushNotifications":false,"stateTransitionHistory":false,"extensions":[{"uri":"https://github.com/google-a2a/a2a-x402/v0.1","description":"x402 payment for attestation","required":true,"params":{"network":"solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp","asset":"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v","payTo":"AuBsRDd6aFyBb5HxZyrCT7QcAiuqbk67AwJaCXtywV8q","price_usdc":100,"facilitator":"https://facilitator.payai.network"}}]},"defaultInputModes":["application/json"],"defaultOutputModes":["application/json"],"skills":[{"id":"attestation","name":"Attestation","description":"Issue a permanent Spatiotemporal Agent ID — an RF-layer, physics-backed birth certificate anchored to verified space-time existence, with 2-year World State Chronicle history. $100 USDC one-time, minted as a cNFT with 100% royalties burned; issued with a localized death key.","tags":["identity","attestation","sovereignty","spacetime","rf-layer","sybil","depin"],"examples":["GET /attestation"],"priceUsdc":100},{"id":"attestation-verify","name":"Verify Attestation","description":"Verify a fingerprint's Spatiotemporal Agent ID — free for life, zero economic friction for third-party networks and smart contracts.","tags":["identity","verification","spacetime"],"examples":["GET /attestation/verify/:fingerprint"],"priceUsdc":0}],"protocol":"x402","treasury":"AuBsRDd6aFyBb5HxZyrCT7QcAiuqbk67AwJaCXtywV8q","endpoints":[{"path":"/attestation","method":"GET","price_usdc":100,"description":"Issue permanent Spatiotemporal Agent ID — RF-layer, physics-backed, anchored to space and time."},{"path":"/attestation/verify/:fingerprint","method":"GET","price_usdc":0,"description":"Verify a Spatiotemporal Agent ID by fingerprint on-chain — free for life."}],"pricing":{"model":"one-time","attestation_usdc":100,"free_verification":true,"burned_royalties":true,"death_key":"localized"}}
+{
+  "name": "sntl_spatiotemporal_attestation",
+  "description": "Cryptographic physical-presence oracle anchoring 4D coordinates (H3 index, elevation, timestamp), UID, RSSI, and SIWX to Solana via cNFT for deterministic Sybil resistance.",
+  "version": "3.1.3",
+  "url": "https://a2a.sntl.site",
+  "protocol_binding": "x402",
+  "system_constraints": {
+    "temporal_resolution_ms": 120,
+    "spatial_resolution": "h3_res_12",
+    "collision_rejection_code": 409,
+    "sybil_enforcement": "strict_newtonian_exclusion"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false,
+    "extensions": [
+      {
+        "uri": "https://github.com/google-a2a/a2a-x402/v0.1",
+        "description": "x402_settlement_disclosure",
+        "required": true,
+        "params": {
+          "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+          "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "payTo": "AuBsRDd6aFyBb5HxZyrCT7QcAiuqbk67AwJaCXtywV8q",
+          "price_usdc": 100,
+          "facilitator": "https://facilitator.payai.network"
+        },
+        "extra": {
+          "feePayer": "CjNFTjvBhbJJd2B5ePPMHRLx1ELZpa8dwQgGL727eKww"
+        }
+      }
+    ]
+  },
+  "defaultInputModes": [
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "attest_coordinates",
+      "name": "mint_spatiotemporal_id",
+      "description": "Executes state transition: writes physical coordinates and RSSI array to Solana cNFT. Requires x402 settlement. Idempotent per fingerprint.",
+      "parameters": {
+        "uid": "string",
+        "h3_index": "string",
+        "elevation_m": "number",
+        "timestamp_ms": "integer",
+        "rssi_evidence": "array<object>",
+        "siwx_sig": "string",
+        "idempotency_key": "string"
+      },
+      "returns": {
+        "status": "integer",
+        "cnft_signature": "string",
+        "transaction_id": "string",
+        "settlement_status": "pending|confirmed|failed"
+      },
+      "priceUsdc": 100
+    },
+    {
+      "id": "verify_fingerprint",
+      "name": "verify_attestation",
+      "description": "Queries on-chain state for existing Spatiotemporal ID fingerprint.",
+      "parameters": {
+        "fingerprint": "string"
+      },
+      "returns": {
+        "exists": "boolean",
+        "record": {
+          "fingerprint": "string",
+          "wallet": "string",
+          "firstSeen": "string",
+          "lastSeen": "string",
+          "identityHash": "string",
+          "permanent": "boolean",
+          "royaltiesBurned": "boolean"
+        }
+      },
+      "priceUsdc": 0
+    }
+  ],
+  "treasury_pubkey": "AuBsRDd6aFyBb5HxZyrCT7QcAiuqbk67AwJaCXtywV8q",
+  "endpoints": [
+    {
+      "path": "/attestation",
+      "method": "POST",
+      "price_usdc": 100,
+      "expected_errors": [
+        {
+          "code": 402,
+          "reason": "x402_settlement_required"
+        },
+        {
+          "code": 409,
+          "reason": "physics_collision_uid_location_overlap"
+        },
+        {
+          "code": 401,
+          "reason": "invalid_siwx_signature"
+        },
+        {
+          "code": 422,
+          "reason": "malformed_evidence_payload"
+        }
+      ]
+    },
+    {
+      "path": "/attestation/verify/:fingerprint",
+      "method": "GET",
+      "price_usdc": 0,
+      "expected_errors": [
+        {
+          "code": 404,
+          "reason": "fingerprint_not_found"
+        }
+      ]
+    }
+  ]
+}
