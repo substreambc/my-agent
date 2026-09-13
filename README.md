@@ -8,14 +8,13 @@
 # ⚡ SNTL DePIN Oracle: Physical/Digital ID Attestation
 
 
-ID anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle** birth record (geolocation · time · power), minted as a **cNFT with 100% royalties: 100**. Verification is free and unfalsifiable on the blockchain itself. See solscan, orbmarkets, or any Blockchain explorer. 
+ID anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle** birth record (spatiotemporal · time, space, and power), minted as a **cNFT royalties: 100** de-incentivized aftermarket. Verification is PERMANENT on the public ledger Solana blockchain. See solscan, orbmarkets, or any public Blockchain explorer. 
 
 ---
 
 ## PROOF IS TRUST  
-Trust requires physical proof.
 
-SNTL anchors digital assets to verifiable existence in space and time.
+SNTL anchors physical/digital assets to verifiable existence in space and time.
 
 - Mint your permanent identity once — **$100 USDC**
 - Verification is permanently attested to on the public ledger Solana blockchain. 
@@ -38,8 +37,8 @@ SNTL anchors digital assets to verifiable existence in space and time.
 ## How it works
 
 1. `GET /attestation` — pay **$100 USDC once** (x402)
-2. Receive your **Spatiotemporal Agent ID** — a permanent cNFT
-3. `GET /attestation/verify/:fingerprint` — **on the blockchain, forever**
+2. Receive your **Spatiotemporal Agent ID** — a permanent cNFT and ID profile
+3. `GET /attestation/verify/:fingerprint` — **on the blockchain**
 
 ---
 
