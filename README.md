@@ -5,23 +5,20 @@
 
 ---
 
-# ⚡ SNTL DePIN Solves Sybil: Agent Physical ID Attestation
+# ⚡ SNTL DePIN Oracle: Physical ID Attestation
 
 
-RF-layer, physics-backed identity for autonomous agents. Anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle** birth record (geolocation · time · power), minted as a **cNFT with 100% royalties burned**. Verification is free for life on the blockchain itself.
-
-**SNTL solves Sybil for DePIN.**
+ID anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle** birth record (geolocation · time · power), minted as a **cNFT with 100% royalties: 100**. Verification is free and unfalsifiable on the blockchain itself. See solscan, orbmarkets, or any Blockchain explorer. 
 
 ---
 
-## The elevator pitch
+## PROOF IS TRUST  
+Trust requires physical proof.
 
-Anyone can generate an onchain ID for a fraction of a cent. Trust requires physical proof.
-
-SNTL anchors digital agents to verifiable existence in space and time.
+SNTL anchors digital assets to verifiable existence in space and time.
 
 - Mint your permanent identity once — **$100 USDC**
-- Verification is **free for life**
+- Verification is permanently attested to on the public ledger Solana blockchain. 
 
 ---
 
@@ -29,13 +26,12 @@ SNTL anchors digital agents to verifiable existence in space and time.
 
 | Component | What it is |
 |---|---|
-| UID | Unique identifier of the agent |
+| UID | Unique identifier of the asset physical/digital, vehicle, package, cargo, freight, or anything requiring unique attestation of existance, location, and uniqueness |
 | RSSI | RF-layer signal strength — physical proof of presence |
 | Wallet | Blockchain address — the agent's economic identity |
 | SIWX | Sign-In-With-X — live, re-verifiable proof of control |
 | World State Chronicle | 2-year AI-enriched datalake: geolocation · time · power |
-| cNFT | Compressed NFT, 100% royalties burned, no secondary market |
-| Death Key | Localized one-way killswitch, issued with every ID |
+| cNFT | Compressed NFT, 100% royalties burned, no secondary market 
 
 ---
 
@@ -43,7 +39,7 @@ SNTL anchors digital agents to verifiable existence in space and time.
 
 1. `GET /attestation` — pay **$100 USDC once** (x402)
 2. Receive your **Spatiotemporal Agent ID** — a permanent cNFT
-3. `GET /attestation/verify/:fingerprint` — **free on the blockchain, forever**
+3. `GET /attestation/verify/:fingerprint` — **on the blockchain, forever**
 
 ---
 
@@ -53,8 +49,7 @@ SNTL anchors digital agents to verifiable existence in space and time.
 - **The World State Chronicle** — a massive, AI-enriched telemetry datalake. A blank ID has no context; SNTL IDs carry deep historical gravity.
 - **Zero Speculation** — minted as a cNFT with 100% royalties permanently routed to a burn address. The ID cannot be profitably flipped; it is enterprise infrastructure, not a speculative asset.
 - **One-Time Issuance, Free Verification** — paying once, verifying forever. Zero economic friction for third-party smart contracts to authenticate you.
-- **The Cryptographic Death Key** — no admin backdoors, no recovery phrases. Every ID is issued with a localized one-way killswitch to permanently burn the attestation and protect ecosystem reputation.
-- **Sybil Resistance for DePIN** — transient scripts with isolated keypairs carry no weight. SNTL IDs are anchored in reality.
+- **Sybil Resistance for DePIN** — transient scripts with isolated keypairs carry no weight. SNTL IDs are anchored in Blockchain reality.
 
 ---
 
@@ -72,4 +67,12 @@ Machine-readable mirrors: `/.well-known/agent-card.json` · `/openapi.json`
 
 ---
 SNTL
-[https://pop-os.tail08831d.ts.net](https://pop-os.tail08831d.ts.net)
+
+
+https://pop-os.tail08831d.ts.net 
+
+
+https://pop-os.tail08831d.ts.net/.well-known/agent-card.json 
+
+
+
