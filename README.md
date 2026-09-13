@@ -8,7 +8,7 @@
 # ⚡ SNTL DePIN Oracle: Physical/Digital ID Attestation
 
 
-ID anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle** birth record (spatiotemporal · time, space, and power), minted as a **cNFT royalties: 100** de-incentivized aftermarket. Verification is PERMANENT on the public ledger Solana blockchain. See solscan, orbmarkets, or any public Blockchain explorer. 
+ID anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle** record (spatiotemporal · time, space, and power), minted as a **cNFT royalties: 100** (De-incentivized aftermarket). Verification is PERMANENT on the public ledger Solana blockchain. Use SNTL or solscan, or orbmarkets, or any public Blockchain explorer for verification. 
 
 ---
 
@@ -44,11 +44,11 @@ SNTL anchors physical/digital assets to verifiable existence in space and time.
 
 ## Architecture of trust
 
-- **The RF-Layer Anchor** — we don't just verify signatures; we verify physical existence. Spoofing and Sybil attacks become exponentially harder and vastly more expensive.
+- **The RF-Layer Anchor** — we don't just verify signatures; we verify physical existence. Spoofing and Sybil attacks become exponentially more difficult and vastly more expensive.
 - **The World State Chronicle** — a massive, AI-enriched telemetry datalake. A blank ID has no context; SNTL IDs carry deep historical gravity.
-- **Zero Speculation** — minted as a cNFT with 100% royalties permanently routed to a burn address. The ID cannot be profitably flipped; it is enterprise infrastructure, not a speculative asset.
-- **One-Time Issuance, Free Verification** — paying once, verifying forever. Zero economic friction for third-party smart contracts to authenticate you.
-- **Sybil Resistance for DePIN** — transient scripts with isolated keypairs carry no weight. SNTL IDs are anchored in Blockchain reality.
+- **Zero Speculation** — minted as a cNFT with royalties: 100. SNTL cNFTs are part of the enterprise infrastructure, not a speculative asset.
+- **One-Time Issuance**. Zero economic friction for third-party smart contracts to authenticate and positively ID your physical/digital asset.
+- **Sybil Resistance for DePIN** — transient scripts with isolated keypairs carry no weight. SNTL IDs are anchored in Blockchain reality, assure uniqueness, and record the live position within 120ms; full history.
 
 ---
 
@@ -57,7 +57,7 @@ SNTL anchors physical/digital assets to verifiable existence in space and time.
 | Path | Method | Price | Description |
 |---|---|---|---|
 | `/attestation` | GET | $100 USDC | Issue a permanent Spatiotemporal Agent ID |
-| `/attestation/verify/:fingerprint` | GET | Free | Verify an ID by fingerprint, on-chain, for life |
+| `/attestation/verify/:fingerprint` | GET | Free | Verify an ID by fingerprint, on-chain |
 | `/.well-known/agent-card.json` | GET | Free | Machine-readable agent card |
 | `/openapi.json` | GET | Free | API specification |
 | `/health` | GET | Free | Service status 
@@ -65,13 +65,9 @@ SNTL anchors physical/digital assets to verifiable existence in space and time.
 Machine-readable mirrors: `/.well-known/agent-card.json` · `/openapi.json`
 
 ---
-SNTL
-
 
 https://pop-os.tail08831d.ts.net 
 
 
 https://pop-os.tail08831d.ts.net/.well-known/agent-card.json 
-
-
 
