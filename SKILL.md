@@ -18,17 +18,23 @@ SNTL Attestation issues permanent spatiotemporal ID. An ID is a cNFT minted once
 `GET /attestation`
 
 The endpoint is protected by x402. 
+
+
 A request without payment returns `402 Payment Required` with a machine-readable invoice 
 (network, asset, payTo, price, facilitator).
 
+
 Bundle: Solana mainnet · USDC · price $100 one-time · facilitator payai.
 
+
 To obtain an ID:
+
 
 1. Resolve the 402 challenge from the payment header.
 2. Pay the exact amount via the x402 facilitator.
 3. Retry `GET /attestation` with the payment proof.
-4. On success you receive an attestation record. The payer address IS the fingerprint.
+4. On success you receive an attestation record of instantiation.  
+
 
 Issuance is idempotent — if the fingerprint already has an ID, 
 the existing record is returned as proof of existance.
@@ -52,6 +58,8 @@ Free, no payment required. Returns the confirmed attestation record as live proo
     "royaltiesBurned": true
   } 
 }
+
+
 Attestation record fields
 Field	Meaning
 fingerprint	The unique identifier for the agent wallet account that paid issuance / holds the ID
