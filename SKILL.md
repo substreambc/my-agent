@@ -5,7 +5,7 @@ Agent-operable manual for issuing and verifying Spatiotemporal Agent IDs.
 
 ## Overview
 
-SNTL Attestation issues permanent, physics-backed identities for autonomous agents — the Spatiotemporal Agent ID. An ID is a cNFT minted once, with 100% royalties burned, anchored by UID + RSSI + Wallet + SIWX and backed by a 2-year World State Chronicle birth record. Verification is free on-chain for life. SNTL solves Sybil for DePin.
+SNTL Attestation issues permanent spatiotemporal ID. An ID is a cNFT minted once, with 100% royalties burned, anchored by UID + RSSI + Wallet + SIWX, given weight and depth by a 2-year World State Chronicle. Verification is on-chain.
 
 ## Discovery
 
@@ -31,7 +31,7 @@ To obtain an ID:
 4. On success you receive an attestation record. The payer address IS the fingerprint.
 
 Issuance is idempotent — if the fingerprint already has an ID, 
-the existing record is returned (no double charge).
+the existing record is returned as proof of existance.
 
 ## Verify an ID
 
@@ -39,11 +39,11 @@ the existing record is returned (no double charge).
 
 Free, no payment required. Returns the confirmed attestation record as live proof; if it exists, or a not-found result.
 
-```json
+```EXAMPLE json 
 { 
   "exists": true, 
   "record": { 
-    "fingerprint": "<hash_or_wallet>",
+    "fingerprint": "<hash_SWIX_RSSI_etc_wallet>",
     "wallet": "<payer_wallet>",
     "firstSeen": "2024-10-24T12:00:00.000Z",
     "lastSeen": "2024-10-24T12:00:00.000Z",
@@ -55,17 +55,15 @@ Free, no payment required. Returns the confirmed attestation record as live proo
 Attestation record fields
 Field	Meaning
 fingerprint	The unique identifier for the agent wallet account that paid issuance / holds the ID
-firstSeen	Birth epoch (ISO 8601)
-lastSeen	Last time the agent interacted with the rail (ISO 8601)
+firstSeen epoch (ISO 8601)
+lastSeen	Last time the physical/digital asset interacted with the rail (ISO 8601)
 identityHash	
-Cryptographic hash anchoring the agent's spatial/network fingerprint
+Cryptographic hash anchoring the spatial/network fingerprint
 permanent	
 
 Boolean confirming the ID is permanently anchored
 royaltiesBurned	Boolean confirming royalties: 100; no secondary market incentive.
-Permanence: the record and its free verification for life are essentially eternal; unless the death key is used to terminate the agent.
-Death Key: each ID is issued with a localized one-way killswitch so a compromised environment can 
-permanently burn the attestation. 
+Permanence: the record and its verification are on the Solana Blockchain public ledger. 
+
 
 Secure on the holder side; the service never holds recovery material.
-Contact and governance are resolved via verified channels. 
