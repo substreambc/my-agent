@@ -5,7 +5,7 @@
 
 ---
 
-# ⚡ SNTL DePIN Oracle: Physical ID Attestation
+# ⚡ SNTL DePIN Oracle: Physical/Digital ID Attestation
 
 
 ID anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle** birth record (geolocation · time · power), minted as a **cNFT with 100% royalties: 100**. Verification is free and unfalsifiable on the blockchain itself. See solscan, orbmarkets, or any Blockchain explorer. 
