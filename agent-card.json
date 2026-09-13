@@ -2,7 +2,7 @@
   "name": "sntl_spatiotemporal_attestation",
   "description": "Cryptographic physical-presence oracle anchoring 4D coordinates (H3 index, elevation, timestamp), UID, RSSI, and SIWX to Solana via cNFT for deterministic Sybil resistance.",
   "version": "3.1.3",
-  "url": "https://a2a.sntl.site",
+  "url": "https://pop-os.tail08831d.ts.net",
   "protocol_binding": "x402",
   "system_constraints": {
     "temporal_resolution_ms": 120,
