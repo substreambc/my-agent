@@ -7,6 +7,9 @@
 
 # ⚡ SNTL DePIN Oracle: Physical/Digital ID Attestation
 
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f76ae49a-e049-4ba0-a7ad-82697d520cb0" />
+super simple UI for A2A 
+
 
 ID anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle** record (spatiotemporal · time, space, and power), minted as a **cNFT royalties: 100** (De-incentivized aftermarket). Verification is PERMANENT on the public ledger Solana blockchain. Use SNTL or solscan, or orbmarkets, or any public Blockchain explorer for verification. 
 
