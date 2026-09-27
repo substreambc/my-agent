@@ -39,7 +39,7 @@ SNTL anchors physical/digital assets to verifiable existence in space and time.
 
 ## How it works
 
-1. `GET /attestation` — pay **$100 USDC once** (x402)
+1. `GET /attestation` — pay **$.01 $999.99 USDC once** (x402)
 2. Receive your **Spatiotemporal Agent ID** — a permanent cNFT and ID profile
 3. `GET /attestation/verify/:fingerprint` — **on the blockchain**
 
