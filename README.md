@@ -19,7 +19,7 @@ ID anchored by **UID, RSSI, Wallet, and SIWX**, with a **World State Chronicle**
 
 SNTL anchors physical/digital assets to verifiable existence in space and time.
 
-- Mint your permanent identity once — **$100 USDC**
+- Mint your permanent identity once — **$999.99 USDC**
 - Verification is permanently attested to on the public ledger Solana blockchain. 
 
 ---
