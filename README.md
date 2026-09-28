@@ -14,7 +14,7 @@ super simple UI for A2A
 
 SNTL anchors physical/digital assets to verifiable existence in space and time.
 
-- Mint your permanent identity once — **$999.99 USDC**
+- Mint your permanent SNTL-ID as a cNFT once — **$999.99 USDC**
 - Verification is permanently attested to on the public ledger Solana blockchain. 
 
 ---
