@@ -7,8 +7,9 @@
 
 # ⚡ SNTL DePIN Oracle: agent-card.json 
 
-<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/f76ae49a-e049-4ba0-a7ad-82697d520cb0" />
 simple UI for A2A 
+
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/4da4a9e0-8554-4af5-82a8-274b48cd73f3" />
 
 
 Machine-readable mirrors: `/.well-known/agent-card.json` · `/openapi.json`
