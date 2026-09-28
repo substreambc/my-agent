@@ -1,1 +1,147 @@
-{"name":"sntl_datalake_oracle","description":"Pay-per-record access to the SNTL DePIN RF telemetry & yield-loss datalake. GET only, one record per call, USDC on Solana via x402. Real data only.","version":"3.3.0","url":"https://pop-os.tail08831d.ts.net:10000","protocol_binding":"x402","defaultInputModes":["application/json"],"defaultOutputModes":["application/json"],"skills":[{"id":"api_v2_stats","name":"/api/v2/stats","description":"Datalake statistics — row counts per table.","parameters":{},"priceUsdc":0,"method":"GET"},{"id":"api_v2_ledger__wallet","name":"/api/v2/ledger/:wallet","description":"Most recent A2A billing ledger row for a wallet.","parameters":{"wallet":"string"},"priceUsdc":0,"method":"GET"},{"id":"api_v2_chronicle","name":"/api/v2/chronicle","description":"Most recent world-state chronicle entry, any dimension.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_chronicle_power","name":"/api/v2/chronicle/power","description":"Most recent chronicle entry with a populated power chain.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_chronicle_time","name":"/api/v2/chronicle/time","description":"Most recent chronicle entry with a populated time chain.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_chronicle_space","name":"/api/v2/chronicle/space","description":"Most recent chronicle entry with a populated space chain.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_geo","name":"/api/v2/geo","description":"Most recent H3 geospatial hotspot resolution.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_wallets_paid","name":"/api/v2/wallets/paid","description":"Most recent converted paying wallet.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_wallets_target","name":"/api/v2/wallets/target","description":"Most recent scored, invite-tracked target wallet.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_wallets_architects","name":"/api/v2/wallets/architects","description":"Most recent classified network architect wallet.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_wallets_blink-ready","name":"/api/v2/wallets/blink-ready","description":"Most recent wallet flagged blink-ready for action.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_wallets_connected","name":"/api/v2/wallets/connected","description":"Most recent authenticated wallet that hit the paywall unpaid.","parameters":{},"priceUsdc":2.5,"method":"GET"},{"id":"api_v2_threats_medium","name":"/api/v2/threats/medium","description":"Most recent enriched event classified MEDIUM threat.","parameters":{},"priceUsdc":5,"method":"GET"},{"id":"api_v2_threats_high","name":"/api/v2/threats/high","description":"Most recent enriched event classified HIGH threat.","parameters":{},"priceUsdc":5,"method":"GET"},{"id":"api_v2_wallets_critical","name":"/api/v2/wallets/critical","description":"Wallet behind the most recent critical-tier event.","parameters":{},"priceUsdc":5,"method":"GET"},{"id":"api_v2_wallets_medium","name":"/api/v2/wallets/medium","description":"Wallet behind the most recent medium-tier event.","parameters":{},"priceUsdc":5,"method":"GET"},{"id":"api_v2_wallets_hvt-anomaly","name":"/api/v2/wallets/hvt-anomaly","description":"Most recent high-value-target anomaly wallet.","parameters":{},"priceUsdc":5,"method":"GET"},{"id":"api_v2_pyramid_tier-1","name":"/api/v2/pyramid/tier-1","description":"Most recent wallet appearing on 6+ independent lists.","parameters":{},"priceUsdc":5,"method":"GET"},{"id":"api_v2_pyramid_tier-2","name":"/api/v2/pyramid/tier-2","description":"Most recent wallet appearing on 4–5 independent lists.","parameters":{},"priceUsdc":5,"method":"GET"},{"id":"api_v2_pyramid_tier-3","name":"/api/v2/pyramid/tier-3","description":"Most recent wallet appearing on 2–3 independent lists.","parameters":{},"priceUsdc":5,"method":"GET"},{"id":"api_v2_dlq","name":"/api/v2/dlq","description":"Most recent failure-mode intelligence / dead-letter entry.","parameters":{},"priceUsdc":5,"method":"GET"},{"id":"api_v2_threats_critical","name":"/api/v2/threats/critical","description":"Most recent enriched event classified CRITICAL threat.","parameters":{},"priceUsdc":7.5,"method":"GET"},{"id":"api_v2_rf_violations","name":"/api/v2/rf/violations","description":"Most recent RF physics violation (FSPL-vs-RSSI delta).","parameters":{},"priceUsdc":7.5,"method":"GET"},{"id":"api_v2_threats_treasury","name":"/api/v2/threats/treasury","description":"Most recent unscheduled >100k token movement (critical capital).","parameters":{},"priceUsdc":10,"method":"GET"},{"id":"api_v2_rf_phantoms","name":"/api/v2/rf/phantoms","description":"Most recent entity registration lacking H3 geospatial coordinates.","parameters":{},"priceUsdc":10,"method":"GET"},{"id":"api_v2_rf_hivemapper","name":"/api/v2/rf/hivemapper","description":"Most recent Hivemapper spatial/region physics violation.","parameters":{},"priceUsdc":10,"method":"GET"},{"id":"api_v2_escalation","name":"/api/v2/escalation","description":"Most recent tiered LLM verdict (SLM → LLM).","parameters":{},"priceUsdc":10,"method":"GET"}],"treasury_pubkey":"AuBsRDd6aFyBb5HxZyrCT7QcAiuqbk67AwJaCXtywV8q","endpoints":[{"path":"/api/v2/stats","method":"GET","price_usdc":0,"expected_errors":[{"code":404,"reason":"not_found"}]},{"path":"/api/v2/ledger/:wallet","method":"GET","price_usdc":0,"expected_errors":[{"code":404,"reason":"not_found"}]},{"path":"/api/v2/chronicle","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/chronicle/power","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/chronicle/time","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/chronicle/space","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/geo","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/wallets/paid","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/wallets/target","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/wallets/architects","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/wallets/blink-ready","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/wallets/connected","method":"GET","price_usdc":2.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/threats/medium","method":"GET","price_usdc":5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/threats/high","method":"GET","price_usdc":5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/wallets/critical","method":"GET","price_usdc":5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/wallets/medium","method":"GET","price_usdc":5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/wallets/hvt-anomaly","method":"GET","price_usdc":5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/pyramid/tier-1","method":"GET","price_usdc":5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/pyramid/tier-2","method":"GET","price_usdc":5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/pyramid/tier-3","method":"GET","price_usdc":5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/dlq","method":"GET","price_usdc":5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/threats/critical","method":"GET","price_usdc":7.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/rf/violations","method":"GET","price_usdc":7.5,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/threats/treasury","method":"GET","price_usdc":10,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/rf/phantoms","method":"GET","price_usdc":10,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/rf/hivemapper","method":"GET","price_usdc":10,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]},{"path":"/api/v2/escalation","method":"GET","price_usdc":10,"expected_errors":[{"code":402,"reason":"payment_required"},{"code":404,"reason":"not_found"}]}]}
+{
+  "x402Version": 2,
+  "service": "SNTL Datalake Oracle",
+  "description": "Pay-per-record access to the SNTL DePIN RF telemetry & yield-loss datalake. GET only, one record per call, USDC on Solana via x402. Real data only.",
+  "payment": {
+    "asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "network": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+    "payTo": "AuBsRDd6aFyBb5HxZyrCT7QcAiuqbk67AwJaCXtywV8q"
+  },
+  "accepts": [
+    {
+      "resource": "/api/v2/stats",
+      "price": "0",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/ledger/:wallet",
+      "price": "0",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/chronicle",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/chronicle/power",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/chronicle/time",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/chronicle/space",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/geo",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/wallets/paid",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/wallets/target",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/wallets/architects",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/wallets/blink-ready",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/wallets/connected",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/threats/medium",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/threats/high",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/wallets/critical",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/wallets/medium",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/wallets/hvt-anomaly",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/pyramid/tier-1",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/pyramid/tier-2",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/pyramid/tier-3",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/dlq",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/threats/critical",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/rf/violations",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/threats/treasury",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/rf/phantoms",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/rf/hivemapper",
+      "price": "1.00",
+      "method": "GET"
+    },
+    {
+      "resource": "/api/v2/escalation",
+      "price": "1.00",
+      "method": "GET"
+    }
+  ]
+}
