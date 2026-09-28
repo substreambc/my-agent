@@ -54,18 +54,9 @@ SNTL anchors physical/digital assets to verifiable existence in space and time.
 
 | Path | Method | Price | Description |
 |---|---|---|---|
-| `/attestation` | GET | $.01-999.99 USDC | Issue a permanent Spatiotemporal Agent ID |
-| `/attestation/verify/:fingerprint` | GET | Free | Verify an ID by fingerprint, on-chain |
 | `/.well-known/agent-card.json` | GET | Free | Machine-readable agent card |
 | `/openapi.json` | GET | Free | API specification |
 | `/health` | GET | Free | Service status 
 
 Machine-readable mirrors: `/.well-known/agent-card.json` · `/openapi.json`
-
----
-
-https://pop-os.tail08831d.ts.net 
-
-
-https://pop-os.tail08831d.ts.net/.well-known/agent-card.json 
 
